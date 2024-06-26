@@ -48,5 +48,13 @@ namespace QuestNavigator.Umbraco.Models
 		}
 
 		// properties
+
+		///<summary>
+		/// Suggestions
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.1.0+802e5a8")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("suggestions")]
+		public virtual string Suggestions => this.Value<string>(_publishedValueFallback, "suggestions");
 	}
 }
