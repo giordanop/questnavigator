@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Station>
+@{
+	Layout = null;
+}
+
+
+@if (TempData["Success"] as bool? == true)
+{
+	var siblings = Model.Parent.Children<Station>();
+	var currentStationOrder = siblings.IndexOf(Model) + 1;
+
+	if (currentStationOrder == siblings.Count())
+	{
+		<text>Domande terminate</text>
+
+	}
+	else
+	{
+		var nextStation = siblings.ElementAt(currentStationOrder);
+		<a href="@(nextStation.Url())">Vai alla prossima!</a>
+	}
+}
+else
+{
+	await Html.RenderPartialAsync("~/Views/Partials/Form.cshtml");
+	@* await Html.RenderPartialAsync("~/Views/Partials/Form.cshtml", new QuestFormViewModel()); *@
+}
+
+@* <img src="@Model.Image.GetCropUrl(500, 100)"/>
+<img src="@Model.Image.GetCropUrl(100, 200)"/> *@
+
+@await Html.GetBlockGridHtmlAsync(Model.Body)
+
+
+@Umbraco.GetDictionaryValue("Testo di prova")

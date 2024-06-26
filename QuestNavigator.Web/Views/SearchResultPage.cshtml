@@ -1,0 +1,20 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<QuestNavigator.Core.Search.SearchViewModel>
+@using ContentModels = QuestNavigator.Umbraco.Models;
+@{
+	Layout = null;
+}
+<div>
+	<form action="@Model.Url()" method="get">
+		<input type="text" placeholder="Search" name="query"/>
+		<button>Search</button>
+	</form>
+</div>
+<div class="result-items">	
+@foreach (var item in Model.SearchResults)
+	{
+		<div class="result-item">
+			<h2>@item.Name</h2>
+			<a href="@item.Url()">Read more</a>
+		</div>
+	}
+</div>

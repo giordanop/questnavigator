@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LoginPage>
+@{
+	Layout = null;
+}
+
+@await Umbraco.RenderMacroAsync("Login")
+
+@if (TempData["verificationUrl"] is not null)
+{
+	<a href="@TempData["verificationUrl"]" target="_blank"> Verification URL</a>
+}

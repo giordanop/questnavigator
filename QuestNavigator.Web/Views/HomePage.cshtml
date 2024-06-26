@@ -1,0 +1,32 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = QuestNavigator.Umbraco.Models;
+@{
+	Layout = null;
+}
+@* 
+<environment names="Development">
+	<link rel="stylesheet" href="css-main" debug="true" />
+</environment>
+<environment exclude="Development">
+	<link rel="stylesheet" href="css-main" />
+</environment>
+<environment names="Development">
+	<script src="js-header" type="text/javascript" debug="true"></script>
+</environment>
+<environment exclude="Development">
+	<script src="js-header" type="text/javascript"></script>
+</environment>
+ *@
+
+
+
+@await Html.PartialAsync("LoginStatus")
+
+<a href="@(Model.FirstChild<Station>().Url())">Inizia!</a>
+	
+@(await Component.InvokeAsync("RenderForm", new { formId = new Guid("4f9a236c-f929-4600-ac00-b7273527cc84") }))
+
+
+@* <link rel="stylesheet" href="css-main" />
+<script src="js-header" type="text/javascript"></script> *@

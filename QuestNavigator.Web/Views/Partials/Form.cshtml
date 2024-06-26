@@ -1,0 +1,79 @@
+﻿@using QuestNavigator.Core.Form.Controllers.Surface
+@* @model QuestNavigator.Core.Form.Controllers.Surface.QuestFormViewModel *@
+
+@using (Html.BeginUmbracoForm<QuestFormController>(nameof(QuestFormController.Submit)))
+{
+	<input type="text" value="test" name="hiddenField"/>
+	<input type="submit" value="Submit"/>
+}
+
+    @* 	@foreach (var question in Model.Questions.Select(c => c.Content as Question).WhereNotNull())
+	{
+		<h2>Domanda:</h2>
+		<p>@question.Text</p>
+		@foreach (var answer in question.Answers.Select(a => a.Content as Answer))
+		{
+			<input type="hidden" asp-for="@Model.Sections[0].QAs[i].Question.Id" />
+			<input type="submit" value"Submit" />
+		}
+	} *@
+@*
+<input type="hidden" asp-for="@Model.Title" />
+@for (var i = 0; i < Model.Sections.FirstOrDefault().QAs.Count(); i++)
+{
+    var qa = Model.Sections.FirstOrDefault().QAs;
+
+    <input type="hidden" asp-for="@Model.Sections[0].SectionTitle" />
+    @if (qa[i].Question.QuestionNumber == 0)
+    {
+        <div class="row question">
+            @qa[i].Question.Text
+        </div>
+    }
+    else
+    {
+        if (qa[i].ChildQuestions != null)
+        {
+            <div class="row question child-question @(qa[i].Question.QuestionNumber==null?"parent-question":"")">
+            </div>
+        }
+        else
+        {
+            <div class="row question @(qa[i].Question.QuestionNumber==null?"parent-question":"")">
+                @qa[i].Question.QuestionNumber  @qa[i].Question.Text
+            </div>
+        }
+
+        <input type="hidden" asp-for="@Model.Sections[0].QAs[i].Question.Id" />
+        <input type="hidden" asp-for="@Model.Sections[0].QAs[i].Question.QuestionNumber" />
+        <input type="hidden" asp-for="@Model.Sections[0].QAs[i].Question.Text" />
+        <div class="row answers">
+            @for (var j = 0; j < qa[i].Question.PossibleAnswers.Count(); j++)
+            {
+
+                <input type="hidden" asp-for="@Model.Sections[0].QAs[i].Question.PossibleAnswers[j].Id" />
+                <input type="hidden" asp-for="@Model.Sections[0].QAs[i].Question.PossibleAnswers[j].AnswerText" />
+
+                <div class="answer">
+                    @{
+                        var answer = qa[i].Question.PossibleAnswers[j];
+
+                        <div class="answer">
+                            <label>
+                                @qa[i].Question.PossibleAnswers[j].AnswerText
+                                <input type="radio" asp-for='@Model.Sections[0].QAs[i].Question.SelctedAnswer' value="@answer.Id" />
+                            </label>
+                        </div>
+                        <div class="answer">
+                            <label>
+
+                            </label>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+}
+<input type="submit" value"Submit" />   *@

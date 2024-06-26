@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Cms.Web.Common.Macros.PartialViewMacroPage
+
+@using QuestNavigator.Core.Authentication.Controllers.Surface
+@using QuestNavigator.Core.Authentication.Models
+@using Umbraco.Cms.Web.Common.Models
+@using Umbraco.Cms.Web.Common.Security
+@using Umbraco.Cms.Web.Website.Controllers
+@using Umbraco.Cms.Core.Services
+@using Umbraco.Extensions
+@{
+    var loginModel = new PasswordLessLoginModel();
+    // You can modify this to redirect to a different URL instead of the current one
+    loginModel.RedirectUrl = null;
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="login-form">
+
+    @using (Html.BeginUmbracoForm<UmbAlternativeLoginController>(
+    "HandleLogin", new { RedirectUrl = loginModel.RedirectUrl }))
+    {
+        <h4>Log in with a local account.</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="@loginModel.Email" class="form-label"></label>
+            <input asp-for="@loginModel.Email" class="form-control" />
+            <span asp-validation-for="@loginModel.Email" class="form-text text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Log in</button>
+    }
+</div>
