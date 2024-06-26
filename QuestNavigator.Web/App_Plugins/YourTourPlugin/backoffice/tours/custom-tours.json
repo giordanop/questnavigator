@@ -1,0 +1,27 @@
+[
+    {
+      "name": "My Custom Backoffice tour",
+      "alias": "myCustomBackofficeTour",
+      "group": "Get things done!!!",
+      "groupOrder": 1,
+      "allowDisable": true,
+      "culture": "en-US",
+      "contentType": "",
+      "requiredSections": [ "content", "media" ],
+      "steps": [
+        {
+          "title": "A meaningful title",
+          "content": "<p>Some text explaining the step</p>",
+          "type": null,
+          "element": "[data-element='global-user']",
+          "elementPreventClick": false,
+          "backdropOpacity": 0.6,
+          "event": "click",
+          "view": null,
+          "eventElement": "[data-element='global-user'] .umb-avatar",
+          "skipStepIfVisible": ".css-element-selector",
+          "customProperties": null
+        }
+      ]
+    }
+  ]
